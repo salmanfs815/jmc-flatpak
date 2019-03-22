@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>org.openjdk.JMC</id>
+    <launchable type="desktop-id">org.opendjk.JMC.desktop</launchable>
+    <metadata_license>UPL-1.0</metadata_license>
+    <project_license>UPL-1.0</project_license>
+    <name>Java Mission Control</name>
+    <summary>Java Mission Control</summary>
+    <description>
+        <p>JDK Mission Control is a powerful profiler for HotSpot JVMs and has an \
+            advanced set of tools that enables efficient and detailed analysis of the \
+            extensive data collected by JDK Flight Recorder. The tool chain enables \
+            developers and administrators to collect and analyze data from Java \
+            applications running locally or deployed in production environments.</p>
+    </description>
+    <url type="bugtracker">https://bugs.openjdk.java.net/projects/JMC/issues/</url>
+    <url type="homepage">https://openjdk.java.net/projects/jmc/</url>
+</component>

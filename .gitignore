@@ -1,0 +1,4 @@
+/build/
+/repo/
+/.flatpak-builder/
+/org.openjdk.jmc-linux.gtk.x86_64.tar.gz
