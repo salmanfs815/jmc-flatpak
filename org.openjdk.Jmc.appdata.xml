@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>org.openjdk.JMC</id>
+    <id>org.openjdk.Jmc</id>
     <launchable type="desktop-id">org.opendjk.JMC.desktop</launchable>
     <metadata_license>UPL-1.0</metadata_license>
     <project_license>UPL-1.0</project_license>

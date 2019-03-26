@@ -1,71 +1,51 @@
 {
+    "id": "org.openjdk.Jmc",
     "app-id": "org.openjdk.Jmc",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version": "18.08",
-    "sdk": "org.freedesktop.Sdk",
-    "arch": "x86_64",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.32",
+    "sdk": "org.gnome.Sdk",
     "default-branch": "master",
-    "separate-locales": "false",
     "command": "jmc",
-    "finish-args": [
-        "--socket=x11",
-        "--share=ipc",
-        "--filesystem=host",
-        "--share=network",
-        "--socket=system-bus",
-        "--env=PATH=/app/jre/bin:/usr/bin"
-     ],
-    "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.openjdk11" ],
     "modules": [
         {
             "name": "jmc",
             "buildsystem": "simple",
-            "build-commands": [
-                "install -dm0755 ${FLATPAK_DEST}/jmc",
-                "tar xvf org.openjdk.jmc-linux.gtk.x86_64.tar.gz -C ${FLATPAK_DEST}/jmc",
-                "rm org.openjdk.jmc-linux.gtk.x86_64.tar.gz",
-                "install -dm0755 ${FLATPAK_DEST}/share/icons/hicolor/48x48",
-                "mv ${FLATPAK_DEST}/jmc/icon.xpm ${FLATPAK_DEST}/share/icons/hicolor/48x48/org.openjdk.Jmc.xpm",
-                "install -dm0755 ${FLATPAK_DEST}/bin",
-                "ln -s ${FLATPAK_DEST}/jmc/jmc ${FLATPAK_DEST}/bin/jmc"
-            ],
             "sources": [
                 {
-                    "type": "file",
-                    "path": "org.openjdk.jmc-linux.gtk.x86_64.tar.gz"
+                    "path": "org.openjdk.jmc-linux.gtk.x86_64.tar.gz",
+                    "strip-components": 0,
+                    "type": "archive"
                 },
                 {
-                    "type": "file",
-                    "path": "jmc"
-                }
-            ]
-        },
-        {
-            "name": "desktop",
-            "buildsystem": "simple",
-            "build-commands": [
-                "install -dm0755 ${FLATPAK_DEST}/share/applications",
-                "install -Dm0644 -t ${FLATPAK_DEST}/share/applications org.openjdk.Jmc.desktop"
-            ],
-            "sources": [
+                    "path": "org.openjdk.Jmc",
+                    "dest-filename": "org.openjdk.Jmc",
+                    "type": "file"
+                },
                 {
-                    "type": "file",
-                    "path" : "org.openjdk.Jmc.desktop"
-                }
-            ]
-        },
-        {
-            "name": "appdata",
-            "buildsystem": "simple",
-            "build-commands": [
-                "install -dm0755 ${FLATPAK_DEST}/share/appdata",
-                "install -Dm0644 -t ${FLATPAK_DEST}/share/metainfo org.openjdk.Jmc.appdata.xml"
-            ],
-            "sources": [
+                    "path" : "org.openjdk.Jmc.desktop",
+                    "dest-filename": "org.openjdk.Jmc.desktop",
+                    "type": "file"
+                },
                 {
-                    "type": "file",
-                    "path": "org.openjdk.Jmc.appdata.xml"
+                    "path" : "org.openjdk.Jmc.png",
+                    "dest-filename": "org.openjdk.Jmc.png",
+                    "type": "file"
+                },
+                {
+                    "path": "org.openjdk.Jmc.appdata.xml",
+                    "dest-filename": "org.openjdk.Jmc.appdata.xml",
+                    "type": "file"
                 }
+            ],
+            "build-commands": [
+                "mv jmc /app",
+                "install -dm 755 /app/bin",
+                "ln -s /app/jmc/jmc /app/bin/jmc",
+                "install -Dm 644 org.openjdk.Jmc.desktop /app/share/applications/org.openjdk.Jmc.desktop",
+                "install -Dm 644 org.openjdk.Jmc.appdata.xml /app/share/metainfo/org.openjdk.Jmc.appdata.xml",
+                "mkdir -p /app/share/icons/hicolor/48x48/apps",
+                "install -Dm 644 org.openjdk.Jmc.png /app/share/icons/hicolor/48x48/org.openjdk.Jmc.png",
+                "install -Dm 755 org.openjdk.Jmc /app/bin/org.openjdk.Jmc"
             ]
         },
         {
@@ -73,5 +53,17 @@
             "buildsystem" : "simple",
             "build-commands" : [ "/usr/lib/sdk/openjdk11/install.sh" ]
         }
-    ]
+    ],
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.openjdk11"
+    ],
+    "finish-args": [
+        "--socket=x11",
+        "--share=ipc",
+        "--filesystem=host",
+        "--share=network",
+        "--allow=devel",
+        "--socket=system-bus",
+        "--env=PATH=/app/bin:/app/jdk/bin:/usr/bin:/var/run/host/usr/bin"
+     ]
 }
