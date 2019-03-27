@@ -15,12 +15,12 @@ First, [build JDK Mission Control from source](http://hg.openjdk.java.net/jmc/jm
 
 Place `jmc/target/products/org.openjdk.jmc-linux.gtk.x86_64.tar.gz` into this directory before continuing with the next step.
 
-Build the JMC Flatpak and export to repo:
+Build the JMC Flatpak and export to a local repo:
 ```bash
 flatpak-builder --repo repo build org.openjdk.Jmc.json --force-clean
 ```
 
-To run this freshly-built Flatpak, execute:
+To run this Flatpak, execute:
 ```bash
 flatpak-builder --run build org.openjdk.Jmc.json jmc
 ```

@@ -13,8 +13,7 @@
             "sources": [
                 {
                     "path": "org.openjdk.jmc-linux.gtk.x86_64.tar.gz",
-                    "strip-components": 0,
-                    "type": "archive"
+                    "type": "file"
                 },
                 {
                     "path": "org.openjdk.Jmc",
@@ -38,12 +37,13 @@
                 }
             ],
             "build-commands": [
-                "mv jmc /app",
+                "install -dm 755 jmc",
+                "tar xzf org.openjdk.jmc-linux.gtk.x86_64.tar.gz -C jmc",
                 "install -dm 755 /app/bin",
+                "mv jmc/ /app",
                 "ln -s /app/jmc/jmc /app/bin/jmc",
                 "install -Dm 644 org.openjdk.Jmc.desktop /app/share/applications/org.openjdk.Jmc.desktop",
                 "install -Dm 644 org.openjdk.Jmc.appdata.xml /app/share/metainfo/org.openjdk.Jmc.appdata.xml",
-                "mkdir -p /app/share/icons/hicolor/48x48/apps",
                 "install -Dm 644 org.openjdk.Jmc.png /app/share/icons/hicolor/48x48/org.openjdk.Jmc.png",
                 "install -Dm 755 org.openjdk.Jmc /app/bin/org.openjdk.Jmc"
             ]
@@ -64,6 +64,6 @@
         "--share=network",
         "--allow=devel",
         "--socket=system-bus",
-        "--env=PATH=/app/bin:/app/jdk/bin:/usr/bin:/var/run/host/usr/bin"
+        "--env=PATH=/app/bin:/app/jre/bin:/usr/bin:/var/run/host/usr/bin"
      ]
 }
