@@ -3,7 +3,7 @@
 
 ## Prerequisites
 Install `flatpak` and `flatpak-builder`, add the Flathub remote and
-install the Gnome runtime and SDK along with the OpenJDK 11 extension:
+install the Gnome runtime and SDK along with the Freedesktop OpenJDK 11 extension:
 ```bash
 sudo dnf install flatpak flatpak-builder
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -23,6 +23,18 @@ flatpak-builder --repo repo build org.openjdk.Jmc.json --force-clean
 To run this Flatpak, execute:
 ```bash
 flatpak-builder --run build org.openjdk.Jmc.json jmc
+```
+
+## Install
+Install from local repository:
+```bash
+flatpak --user remote-add --no-gpg-verify jmc-local repo
+flatpak --user install jmc-local org.openjdk.Jmc
+```
+
+Run the installed Flatpak:
+```bash
+flatpak run org.openjdk.Jmc
 ```
 
 ## Validation tools
